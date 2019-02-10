@@ -16,6 +16,9 @@ constexpr int COMPRESSOR_PORT = 0;
 
 constexpr int PISTON_FORWARD_CHANNEL = 0;
 constexpr int PISTON_REVERSE_CHANNEL = 1;
+
+constexpr int cargoJoystickPort = 3;
+constexpr int cargoMotorPort = -1;
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
  * to a variable name. This provides flexibility changing wiring, makes checking

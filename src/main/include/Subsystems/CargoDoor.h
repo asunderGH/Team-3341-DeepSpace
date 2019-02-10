@@ -6,29 +6,25 @@
 /*----------------------------------------------------------------------------*/
 
 #pragma once
+#include "OI.h"
 #include "frc/WPILib.h"
-using namespace frc;
+#include "ctre/Phoenix.h"
+#include "RobotMap.h"
+#include <frc/commands/Subsystem.h>
 
-class OI {
-  private:
-    Joystick* leftJoy;
-    Joystick* rightJoy;
-    Button* pistonExtendButton;
-    Button* servoExtendButton;
-    Button* hatchRetractButton;
-    Button* pistonOffButton;
+class CargoDoor : public frc::Subsystem {
+private:
+	TalonSRX* cargoDoorMotor;
+	// It's desirable that everything possible under private except
+	// for methods that implement subsystem capabilities
 
-    Button* compressorOnButton;
-    Button* compressorOffButton;
-
-    Joystick*cargoStick;
-    Button*releaseCargoShuttle;
-	  Button*releaseCargoRocket;
-	  Button*holdCargo;
-	  Button*resetCargo;
-
-  public:
-  Joystick* getLeft();
-  Joystick* getRight();
-  OI();
+public:
+ 	CargoDoor();
+	~CargoDoor();
+	void move(double cargoValue);
+	TalonSRX* getCargoPort();
+	void reset();
+	double getPosition();
+	void InitDefaultCommand() override;
 };
+

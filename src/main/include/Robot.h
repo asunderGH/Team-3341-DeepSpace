@@ -11,7 +11,7 @@
 #include <frc/commands/Command.h>
 #include <frc/smartdashboard/SendableChooser.h>
 #include <frc/TimedRobot.h>
-
+#include "Subsystems/CargoDoor.h"
 #include "OI.h"
 #include "Subsystems/DriveTrain.h"
 #include "Subsystems/Piston.h"
@@ -22,6 +22,7 @@ class Robot : public frc::TimedRobot {
  public:
   static DriveTrain* m_drive;
   static OI* m_oi;
+  static CargoDoor* cargo;
   static Piston* m_piston;
   static HatchServo* m_hatchServo;
   static PressureControl* m_compressor;

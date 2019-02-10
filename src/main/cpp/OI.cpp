@@ -15,10 +15,11 @@
 #include "Commands/Hatch_Retract.h"
 #include "Commands/Compressor_On.h"
 #include "Commands/Compressor_Off.h"
-
+#include "Commands/MoveCargoDoor.h"
 #include <frc/WPILib.h>
 
 OI::OI() : leftJoy(new Joystick(0)), rightJoy(new Joystick(1)),
+cargoStick(new Joystick(cargoJoystickPort)),
 pistonExtendButton(new JoystickButton(rightJoy, 5)), 
 servoExtendButton(new JoystickButton(rightJoy, 3)),
 hatchRetractButton(new JoystickButton(rightJoy, 1)), 
@@ -34,8 +35,10 @@ compressorOffButton(new JoystickButton(rightJoy, 9))
   pistonOffButton->WhenPressed(new Piston_Off());
   compressorOnButton->WhenPressed(new Compressor_On());
   compressorOffButton->WhenPressed(new Compressor_Off());
-
-
+  releaseCargoShuttle->ToggleWhenPressed(new MoveCargoDoor(44));
+  releaseCargoRocket->ToggleWhenPressed(new MoveCargoDoor(5));
+  holdCargo->ToggleWhenPressed(new MoveCargoDoor(-15));
+  resetCargo->ToggleWhenPressed(new MoveCargoDoor(0));
 }
 
 Joystick* OI::getLeft(){

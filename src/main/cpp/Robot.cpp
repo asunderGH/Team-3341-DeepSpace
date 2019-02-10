@@ -10,6 +10,7 @@
 #include <frc/smartdashboard/SmartDashboard.h>
 
 DriveTrain* Robot::m_drive;
+CargoDoor* Robot::cargo;
 Piston* Robot::m_piston;
 HatchServo* Robot::m_hatchServo;
 PressureControl* Robot::m_compressor;
@@ -23,6 +24,7 @@ void Robot::RobotInit() {
   m_piston = new Piston();
   m_hatchServo = new HatchServo();
   m_compressor = new PressureControl();
+  cargo = new CargoDoor();
   m_oi = new OI();
 
   cs::UsbCamera camera1 = CameraServer::GetInstance()->StartAutomaticCapture();

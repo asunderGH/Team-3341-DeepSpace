@@ -6,29 +6,22 @@
 /*----------------------------------------------------------------------------*/
 
 #pragma once
-#include "frc/WPILib.h"
-using namespace frc;
 
-class OI {
-  private:
-    Joystick* leftJoy;
-    Joystick* rightJoy;
-    Button* pistonExtendButton;
-    Button* servoExtendButton;
-    Button* hatchRetractButton;
-    Button* pistonOffButton;
+#include <frc/commands/Command.h>
+#include "Robot.h"
 
-    Button* compressorOnButton;
-    Button* compressorOffButton;
-
-    Joystick*cargoStick;
-    Button*releaseCargoShuttle;
-	  Button*releaseCargoRocket;
-	  Button*holdCargo;
-	  Button*resetCargo;
-
-  public:
-  Joystick* getLeft();
-  Joystick* getRight();
-  OI();
+class MoveCargoDoor : public frc::Command {
+ private:
+ double direction;
+ double input;
+ int target;
+ double currentPosition;
+ double mysetpoint;
+ public:
+  MoveCargoDoor(double setpoint);
+  void Initialize() override;
+  void Execute() override;
+  bool IsFinished() override;
+  void End() override;
+  void Interrupted() override;
 };

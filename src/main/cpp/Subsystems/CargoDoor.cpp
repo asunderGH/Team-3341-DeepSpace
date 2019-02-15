@@ -49,7 +49,7 @@ double CargoDoor::getPosition()
 	return cargoDoorMotor->GetSelectedSensorPosition(0);
 	//std::cout << "hi 2" << std::endl;
 }
-TalonSRX* CargoDoor::getCargoPort()
+TalonSRX* CargoDoor::getCargoMotor()
 {
 	return cargoDoorMotor;
 }

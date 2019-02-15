@@ -22,7 +22,7 @@ public:
  	CargoDoor();
 	~CargoDoor();
 	void move(double cargoValue);
-	TalonSRX* getCargoPort();
+	TalonSRX* getCargoMotor();
 	void reset();
 	double getPosition();
 	void InitDefaultCommand() override;

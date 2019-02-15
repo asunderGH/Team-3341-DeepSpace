@@ -47,10 +47,15 @@ void MoveCargoDoor::Execute() {
 
 // Make this return true when this Command no longer needs to run execute()
 bool MoveCargoDoor::IsFinished() {
-   if (direction < 0 && target - currentPosition > 0) { //|| Robot::cargo->getCargoPort()->GetSensorCollection().IsFwdLimitSwitchClosed())   {
+   if (direction < 0 && target - currentPosition > 0
+   || Robot::cargo->getCargoMotor()->GetSensorCollection().IsFwdLimitSwitchClosed()
+   || Robot::cargo->getCargoMotor()->GetSensorCollection().IsRevLimitSwitchClosed()) 
+  { //|| Robot::cargo->getCargoPort()->GetSensorCollection().IsFwdLimitSwitchClosed())   {
      return true;
    }
-   else if (direction > 0 && target - currentPosition < 0) {
+   else if (direction > 0 && target - currentPosition < 0
+   || Robot::cargo->getCargoMotor()->GetSensorCollection().IsFwdLimitSwitchClosed()
+   || Robot::cargo->getCargoMotor()->GetSensorCollection().IsRevLimitSwitchClosed()) {
      return true;
    }
    else {

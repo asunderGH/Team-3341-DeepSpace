@@ -6,25 +6,22 @@
 /*----------------------------------------------------------------------------*/
 
 #pragma once
-#include "frc/WPILib.h"
-using namespace frc;
 
-class OI {
-  private:
-    Joystick* leftJoy;
-    Joystick* rightJoy;
-    Button* pistonExtendButton;
-    Button* servoExtendButton;
-    Button* hatchRetractButton;
-    Button* pistonOffButton;
+#include <frc/commands/Subsystem.h>
+#include <frc/WPILib.h>
+#include <iostream>
+#include <stdio.h>
 
-    Button* compressorOnButton;
-    Button* compressorOffButton;
+class Arduino : public frc::Subsystem {
+ private:
+ frc::I2C* arduino;
+ uint8_t* recieve;
+  // It's desirable that everything possible under private except
+  // for methods that implement subsystem capabilities
 
-    Button* readSensorsButton;
-
-  public:
-  Joystick* getLeft();
-  Joystick* getRight();
-  OI();
+ public:
+  Arduino();
+  std::string readUint(int num, uint8_t* uint);
+  void readSensors();
+  void InitDefaultCommand() override;
 };

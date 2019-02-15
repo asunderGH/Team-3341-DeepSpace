@@ -13,6 +13,9 @@ DriveTrain* Robot::m_drive;
 Piston* Robot::m_piston;
 HatchServo* Robot::m_hatchServo;
 PressureControl* Robot::m_compressor;
+AHRS* Robot::navx;
+Arduino* Robot::colorSensors;
+NetworkTables* Robot::cv;
 OI* Robot::m_oi;
 
 void Robot::RobotInit() {
@@ -23,12 +26,20 @@ void Robot::RobotInit() {
   m_piston = new Piston();
   m_hatchServo = new HatchServo();
   m_compressor = new PressureControl();
+  navx = new AHRS(frc::I2C::Port::kMXP);
+  colorSensors = new Arduino();  
+  cv = new NetworkTables();
   m_oi = new OI();
 
   cs::UsbCamera camera1 = CameraServer::GetInstance()->StartAutomaticCapture();
   camera1.SetResolution(240, 180);
   camera1.SetFPS(60);
   camera1.SetBrightness(50);
+
+  navx->Reset();
+  navx->ResetDisplacement();
+  navx->ZeroYaw();
+  
 }
 
 /**
@@ -39,12 +50,16 @@ void Robot::RobotInit() {
  * <p> This runs after the mode specific periodic functions, but before
  * LiveWindow and SmartDashboard integrated updating.
  */
-void Robot::RobotPeriodic() {}
+void Robot::RobotPeriodic() {
+  
+  //std::cout << colorSensors->readSensors() << std::endl;
+  colorSensors->readSensors();
+}
 
 /**
  * This function is called once each time the robot enters Disabled mode. You
  * can use it to reset any subsystem information you want to clear when the
- * robot is disabled.
+ * robot is disabled.  
  */
 void Robot::DisabledInit() {
   

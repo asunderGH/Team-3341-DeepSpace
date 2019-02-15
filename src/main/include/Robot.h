@@ -17,16 +17,21 @@
 #include "Subsystems/Piston.h"
 #include "Subsystems/HatchServo.h"
 #include "Subsystems/PressureControl.h"
+#include "Subsystems/Arduino.h"
+#include "Subsystems/NetworkTables.h"
+#include "AHRS.h"
 
 class Robot : public frc::TimedRobot {
  public:
   static DriveTrain* m_drive;
-  static OI* m_oi;
   static Piston* m_piston;
   static HatchServo* m_hatchServo;
   static PressureControl* m_compressor;
-
   static cs::UsbCamera camera1;
+  static AHRS* navx;
+  static Arduino* colorSensors;
+  static NetworkTables* cv;
+  static OI* m_oi;
 
   void RobotInit() override;
   void RobotPeriodic() override;

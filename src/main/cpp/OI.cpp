@@ -15,6 +15,7 @@
 #include "Commands/Hatch_Retract.h"
 #include "Commands/Compressor_On.h"
 #include "Commands/Compressor_Off.h"
+#include "Commands/readColorSensors.h"
 
 #include <frc/WPILib.h>
 
@@ -24,7 +25,8 @@ servoExtendButton(new JoystickButton(rightJoy, 3)),
 hatchRetractButton(new JoystickButton(rightJoy, 1)), 
 pistonOffButton(new JoystickButton(rightJoy, 8)),
 compressorOnButton(new JoystickButton(rightJoy, 10)), 
-compressorOffButton(new JoystickButton(rightJoy, 9))
+compressorOffButton(new JoystickButton(rightJoy, 9)),
+readSensorsButton(new JoystickButton(leftJoy, 5))
 {
   // Process operator interface input here.
   //hatchExtendButton->WhenPressed(new Hatch_Extend());
@@ -35,7 +37,7 @@ compressorOffButton(new JoystickButton(rightJoy, 9))
   compressorOnButton->WhenPressed(new Compressor_On());
   compressorOffButton->WhenPressed(new Compressor_Off());
 
-
+  readSensorsButton->WhenPressed(new readColorSensors());
 }
 
 Joystick* OI::getLeft(){

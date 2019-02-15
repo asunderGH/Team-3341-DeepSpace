@@ -6,25 +6,15 @@
 /*----------------------------------------------------------------------------*/
 
 #pragma once
-#include "frc/WPILib.h"
-using namespace frc;
 
-class OI {
-  private:
-    Joystick* leftJoy;
-    Joystick* rightJoy;
-    Button* pistonExtendButton;
-    Button* servoExtendButton;
-    Button* hatchRetractButton;
-    Button* pistonOffButton;
+#include <frc/commands/Command.h>
 
-    Button* compressorOnButton;
-    Button* compressorOffButton;
-
-    Button* readSensorsButton;
-
-  public:
-  Joystick* getLeft();
-  Joystick* getRight();
-  OI();
+class readColorSensors : public frc::Command {
+ public:
+  readColorSensors();
+  void Initialize() override;
+  void Execute() override;
+  bool IsFinished() override;
+  void End() override;
+  void Interrupted() override;
 };

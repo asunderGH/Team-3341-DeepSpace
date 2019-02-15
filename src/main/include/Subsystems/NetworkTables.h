@@ -6,25 +6,22 @@
 /*----------------------------------------------------------------------------*/
 
 #pragma once
-#include "frc/WPILib.h"
-using namespace frc;
 
-class OI {
-  private:
-    Joystick* leftJoy;
-    Joystick* rightJoy;
-    Button* pistonExtendButton;
-    Button* servoExtendButton;
-    Button* hatchRetractButton;
-    Button* pistonOffButton;
+#include <frc/commands/Subsystem.h>
 
-    Button* compressorOnButton;
-    Button* compressorOffButton;
+#include "networktables/NetworkTableEntry.h"
+#include "networktables/NetworkTable.h"
+#include "networktables/NetworkTableInstance.h"
+#include "RobotMap.h"
 
-    Button* readSensorsButton;
+class NetworkTables : public frc::Subsystem {
+ private:
+ 
+  // It's desirable that everything possible under private except
+  // for methods that implement subsystem capabilities
 
-  public:
-  Joystick* getLeft();
-  Joystick* getRight();
-  OI();
+ public:
+  NetworkTables();
+  void InitDefaultCommand() override;
+  double getAzimuth();
 };

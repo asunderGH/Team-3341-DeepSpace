@@ -42,7 +42,7 @@ void MoveCargoDoor::Execute() {
   currentPosition = Robot::cargo->getPosition();
   cout << "Current Position:" << currentPosition << endl;
   cout << "diff:" << fabs (target - currentPosition) << endl;
-  Robot::cargo->move(direction * 0.2);
+  Robot::cargo->move(direction * 0.05);
 }
 
 // Make this return true when this Command no longer needs to run execute()

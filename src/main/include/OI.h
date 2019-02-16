@@ -22,6 +22,8 @@ class OI {
     Button* compressorOffButton;
 
     Button* readSensorsButton;
+    Button* rDriveTurn;
+    Button* lDriveTurn;
 
   public:
   Joystick* getLeft();

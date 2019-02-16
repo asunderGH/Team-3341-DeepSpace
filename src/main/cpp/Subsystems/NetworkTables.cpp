@@ -25,7 +25,7 @@ double NetworkTables::getAzimuth(){
   //std::cout << "Reading net tables \n";
   
   nt::NetworkTableEntry rectAzimuth = table->GetEntry("rectAzi");
-  double azimuth = rectAzimuth.GetDouble(-1);
+  double azimuth = rectAzimuth.GetDouble(-100);
  
  if (printOutputNetworkTables){
     std::cout << "Azimuth " << azimuth << std::endl;
@@ -35,7 +35,21 @@ double NetworkTables::getAzimuth(){
 }
 
 double NetworkTables::getDistance(){
-  return 24;
+  auto inst = nt::NetworkTableInstance::GetDefault();
+  auto table = inst.GetTable("cv");
+  
+  inst.StartClient("10.33.41.2");
+  inst.StartDSClient();
+  //std::cout << "Reading net tables \n";
+  
+  nt::NetworkTableEntry rectDistance = table->GetEntry("rectDistance");
+  double distance = rectDistance.GetDouble(-100);
+ 
+ if (printOutputNetworkTables){
+    std::cout << "Distance " << distance << std::endl;
+ }
+
+  return distance;
 }
 
 // Put methods for controlling this subsystem

@@ -14,7 +14,7 @@ TurnToAngle::TurnToAngle(double angle) {
   // eg. Requires(Robot::chassis.get());
   Requires(Robot::m_drive);
   myAngle = angle;
-  turnConstant = 0.03;
+  turnConstant = 0.02;
 }
 
 // Called just before this Command runs the first time
@@ -25,15 +25,37 @@ void TurnToAngle::Initialize() {
 // Called repeatedly when this Command is scheduled to run
 void TurnToAngle::Execute() {
   error = myAngle - Robot::navx->GetYaw();
-  std::cout << "Angle: " << Robot::navx->GetYaw() << " Error: " << error << std::endl;
-  Robot::m_drive->tankDrive(turnConstant * error, -turnConstant * error);
+  double power = turnConstant * error;
+
+  std::cout << "Angle: " << Robot::navx->GetYaw() << " Error: " << error << " Power " << power << std::endl;
+  if (power > 1){
+    power = 0.75;
+  }
+  else if (power < -1){
+    power = -0.75;
+  }
+  else if (power < 0.1 && power > 0){
+    power = 0.1;              
+  }
+  else if (power > -0.1 && power < 0){
+    power = -0.1;
+  }
+  
+  Robot::m_drive->tankDrive(power, -power);
 }
 
 // Make this return true when this Command no longer needs to run execute()
 bool TurnToAngle::IsFinished() { 
-  if (error < 3 && error > -3){
+
+  if (error < 1 && error > -1){
     return true;
   }
+  if (!Robot::navx->IsConnected()){
+    std::cout << "NavX disconnected error" << std::endl;
+    return true;
+  }
+  
+  
   return false;
 }
 

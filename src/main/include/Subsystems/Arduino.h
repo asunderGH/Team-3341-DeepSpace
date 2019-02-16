@@ -25,5 +25,5 @@ class Arduino : public frc::Subsystem {
   int* getReadings();
   void readSensors();
   void InitDefaultCommand() override;
-  int* getReadings();
+  
 };

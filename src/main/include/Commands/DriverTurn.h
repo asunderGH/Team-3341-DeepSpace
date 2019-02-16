@@ -9,9 +9,10 @@
 
 #include <frc/commands/Command.h>
 
-class TurnToAngle : public frc::Command {
+class DriverTurn : public frc::Command {
  public:
-  TurnToAngle(double angle);
+  DriverTurn();
+  DriverTurn(double power);
   void Initialize() override;
   void Execute() override;
   bool IsFinished() override;
@@ -19,8 +20,5 @@ class TurnToAngle : public frc::Command {
   void Interrupted() override;
 
   private:
-    double myAngle;
-    double turnConstant;
-    double error;
-    
+    double myPow;
 };

@@ -47,9 +47,6 @@ void Arduino::InitDefaultCommand() {
   // SetDefaultCommand(new MySpecialCommand());
 }
 
-int* Arduino::getReadings(){
-  return new int[5];
-}
 
 // Put methods for controlling this subsystem
 // here. Call these from Commands.

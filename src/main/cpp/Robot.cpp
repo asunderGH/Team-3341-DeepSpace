@@ -53,7 +53,7 @@ void Robot::RobotInit() {
 void Robot::RobotPeriodic() {
   
   //std::cout << colorSensors->readSensors() << std::endl;
-  colorSensors->readSensors();
+  //colorSensors->readSensors();
 }
 
 /**

@@ -43,8 +43,8 @@ rDriveTurn(new JoystickButton(rightJoy, 1))
 
   readSensorsButton->WhenPressed(new readColorSensors());
   
-  lDriveTurn->WhenPressed(new DriverTurn());
-  rDriveTurn->WhenPressed(new DriverTurn());
+  lDriveTurn->WhenPressed(new DriverTurn(0.3));
+  rDriveTurn->WhenPressed(new DriverTurn(0.3));
 }
 
 Joystick* OI::getLeft(){

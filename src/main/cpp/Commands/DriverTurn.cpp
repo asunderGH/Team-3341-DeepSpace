@@ -8,12 +8,6 @@
 #include "Commands/DriverTurn.h"
 #include "Robot.h"
 
-DriverTurn::DriverTurn() {
-  // Use Requires() here to declare subsystem dependencies
-  // eg. Requires(Robot::chassis.get());
-  Requires(Robot::m_drive);
-  myPow = Robot::m_oi->getLeft()->GetZ();
-}
 
 DriverTurn::DriverTurn(double power){
   Requires(Robot::m_drive);
@@ -25,12 +19,14 @@ void DriverTurn::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
 void DriverTurn::Execute() {
+  
   if (Robot::m_oi->getLeft()->GetRawButtonPressed(1)){
-    Robot::m_drive->tankDrive(-myPow, myPow);
-  }
-  else if (Robot::m_oi->getRight()->GetRawButtonPressed(1)){
     Robot::m_drive->tankDrive(myPow, -myPow);
   }
+  else if (Robot::m_oi->getRight()->GetRawButtonPressed(1)){
+    Robot::m_drive->tankDrive(-myPow, myPow);
+  }
+  
 }
 
 // Make this return true when this Command no longer needs to run execute()

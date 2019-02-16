@@ -11,7 +11,6 @@
 
 class DriverTurn : public frc::Command {
  public:
-  DriverTurn();
   DriverTurn(double power);
   void Initialize() override;
   void Execute() override;

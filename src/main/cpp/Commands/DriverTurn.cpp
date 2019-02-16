@@ -20,21 +20,15 @@ void DriverTurn::Initialize() {}
 // Called repeatedly when this Command is scheduled to run
 void DriverTurn::Execute() {
   
-  if (Robot::m_oi->getLeft()->GetRawButtonPressed(1)){
-    Robot::m_drive->tankDrive(myPow, -myPow);
-  }
-  else if (Robot::m_oi->getRight()->GetRawButtonPressed(1)){
-    Robot::m_drive->tankDrive(-myPow, myPow);
-  }
-  
+  Robot::m_drive->tankDrive(myPow, -myPow);
 }
 
 // Make this return true when this Command no longer needs to run execute()
 bool DriverTurn::IsFinished() { 
-if (Robot::m_oi->getLeft()->GetRawButtonReleased(1) || Robot::m_oi->getRight()->GetRawButtonReleased(1)){
-  return true; 
-}
-return false;
+  if (Robot::m_oi->getLeft()->GetTriggerReleased() || Robot::m_oi->getRight()->GetTriggerReleased()){
+    return true;
+  }
+  return false;
 }
 
 

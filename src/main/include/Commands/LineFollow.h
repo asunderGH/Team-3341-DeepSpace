@@ -7,22 +7,14 @@
 
 #pragma once
 
-#include <frc/commands/Subsystem.h>
+#include <Commands/Command.h>
 
-#include "networktables/NetworkTableEntry.h"
-#include "networktables/NetworkTable.h"
-#include "networktables/NetworkTableInstance.h"
-#include "RobotMap.h"
-
-class NetworkTables : public frc::Subsystem {
- private:
- 
-  // It's desirable that everything possible under private except
-  // for methods that implement subsystem capabilities
-
+class LineFollow : public frc::Command {
  public:
-  NetworkTables();
-  void InitDefaultCommand() override;
-  double getAzimuth();
-  double getDistance();
+  LineFollow();
+  void Initialize() override;
+  void Execute() override;
+  bool IsFinished() override;
+  void End() override;
+  void Interrupted() override;
 };

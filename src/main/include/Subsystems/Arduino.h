@@ -24,4 +24,5 @@ class Arduino : public frc::Subsystem {
   std::string readUint(int num, uint8_t* uint);
   void readSensors();
   void InitDefaultCommand() override;
+  int* getReadings();
 };

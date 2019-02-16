@@ -34,5 +34,9 @@ double NetworkTables::getAzimuth(){
   return azimuth;
 }
 
+double NetworkTables::getDistance(){
+  return 24;
+}
+
 // Put methods for controlling this subsystem
 // here. Call these from Commands.

@@ -38,6 +38,10 @@ void Arduino::readSensors(){
   */
 }
 
+int* Arduino::getReadings(){
+  return new int[5];
+}
+
 void Arduino::InitDefaultCommand() {
   // Set the default command for a subsystem here.
   // SetDefaultCommand(new MySpecialCommand());

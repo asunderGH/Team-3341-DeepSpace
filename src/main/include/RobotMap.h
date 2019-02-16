@@ -19,6 +19,8 @@ constexpr int PISTON_REVERSE_CHANNEL = 1;
 
 const static bool printOutputsColorSensors = true;
 const static bool printOutputNetworkTables = true;
+
+const static int thresholdVal = 500;
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
  * to a variable name. This provides flexibility changing wiring, makes checking

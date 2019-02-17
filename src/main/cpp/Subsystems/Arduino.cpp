@@ -7,6 +7,7 @@
 
 #include "Subsystems/Arduino.h"
 #include "RobotMap.h"
+#include <iostream>
 
 Arduino::Arduino() : Subsystem("ExampleSubsystem"), arduino(new frc::I2C(frc::I2C::kOnboard, 8)), recieve(new uint8_t()) {
  uint8_t recieve[12];//12 bytes in which to read the Packet from I2C
@@ -27,8 +28,8 @@ void Arduino::readSensors(){
   
   arduino->ReadOnly(11,recieve);
   for (unsigned char i=0;i<11;i++) {
-	  std::cout << recieve[i] << "  ";
-  std:cout << std::endl;
+	  std::cout << recieve[i] << "  " << std::endl;
+  
 
   }
 

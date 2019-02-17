@@ -16,6 +16,7 @@ PressureControl* Robot::m_compressor;
 AHRS* Robot::navx;
 Arduino* Robot::colorSensors;
 NetworkTables* Robot::cv;
+CargoDoor* Robot::cargo;
 OI* Robot::m_oi;
 
 void Robot::RobotInit() {
@@ -35,6 +36,7 @@ void Robot::RobotInit() {
   navx = new AHRS(frc::I2C::Port::kMXP);
   colorSensors = new Arduino();  
   cv = new NetworkTables();
+  cargo = new CargoDoor();
   m_oi = new OI();
 
   

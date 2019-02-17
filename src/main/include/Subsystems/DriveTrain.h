@@ -18,6 +18,7 @@ class DriveTrain : public frc::Subsystem {
  private:
  phoenix::motorcontrol::can::WPI_TalonSRX* left;
  phoenix::motorcontrol::can::WPI_TalonSRX* right;
+ phoenix::motorcontrol::can::WPI_TalonSRX* test;
  DifferentialDrive* drive;
    // It's desirable that everything possible under private except
   // for methods that implement subsystem capabilities

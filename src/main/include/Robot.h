@@ -19,6 +19,7 @@
 #include "Subsystems/PressureControl.h"
 #include "Subsystems/Arduino.h"
 #include "Subsystems/NetworkTables.h"
+#include "Subsystems/CargoDoor.h"
 #include "AHRS.h"
 
 class Robot : public frc::TimedRobot {
@@ -31,6 +32,7 @@ class Robot : public frc::TimedRobot {
   static AHRS* navx;
   static Arduino* colorSensors;
   static NetworkTables* cv;
+  static CargoDoor* cargo;
   static OI* m_oi;
 
   void RobotInit() override;

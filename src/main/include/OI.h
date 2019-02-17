@@ -24,7 +24,13 @@ class OI {
     Button* readSensorsButton;
     Button* rDriveTurn;
     Button* lDriveTurn;
-
+    
+    Joystick*cargoStick;
+    Button*releaseCargoShuttle;
+	  Button*releaseCargoRocket;
+	  Button*holdCargo;
+	  Button*resetCargo;
+    Button* resetEncoder;
   public:
   Joystick* getLeft();
   Joystick* getRight();

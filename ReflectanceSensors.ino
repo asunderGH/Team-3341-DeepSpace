@@ -59,10 +59,27 @@ respectively
 QTRSensorsRC qtrrc((unsigned char[]) {4,5,6,7},
   NUM_SENSORS, TIMEOUT, EMITTER_PIN); 
 unsigned int sensorValues[NUM_SENSORS];
+
+//ABH: Define new variable that gets read by the ISR
+//to send to RoboRio
+//We will send:
+//     2 bytes for every sensor 
+//     1 byte for the Sequence number, which will be incremented just to ensure that
+//            On the Roborio, we can confirm that we are getting all the data
+//            Sent by Adrunio. This will rollover after every 255.
+//     2 byte (last 2 bytes) set to 0xAA and 0xBB. This is constant that will help us determine 
+//            the endian-ness on the RoboRio end.
+//
+// Total 11 bytes (Assuming 4 sensors)
+volatile char sensorValsForRobo[2*NUM_SENSORS+3];
+
 unsigned int pos;
 
 void setup()
 {
+
+  sensorValsForRobo[2*NUM_SENSORS+1] = 0xAA; //Hardcoded last byte
+  sensorValsForRobo[2*NUM_SENSORS+2] = 0xBB; //Hardcoded last byte
 
   Wire.begin(8);                // join i2c bus with address #8
   //Wire.onReceive(receiveData); // register incoming data
@@ -114,6 +131,16 @@ position from 0 to 5000
 qtrrc.readLine(sensorValues);
   pos = qtrrc.readLine(sensorValues);
   qtrrc.read(sensorValues);
+
+  //Package the data for the RoboRio
+  noInterrupts(); //Lock the interrupt, so that the sendData function
+                  //Does not read something that is half prepared.
+  for (unsigned char i = 0; i < NUM_SENSORS; i++)
+  {
+    sensorValsForRobo[2*i] = (unsigned char) (sensorValues[i] & 0xFF);
+    sensorValsForRobo[2*i+1] = (unsigned char)((sensorValues[i] >> 8) & 0xFF);
+  }
+  interrupts(); //Unlock Interrupts
 
   // print the sensor values as numbers from 0 to 1000, where 0 means 
 maximum reflectance and
@@ -180,6 +207,12 @@ char* arrayCombiner(char array1[4], char array2[4])
 
 void sendData()
 {
+  static unsigned char robo_pkt_seq_no = 0;
+  sensorValsForRobo[2*NUM_SENSORS] = robo_pkt_seq_no;
+  robo_pkt_seq_no++;
+  Wire.write(sensorValsForRobo,sizeof(sensorValsForRobo));
+
+#if 0
   //char data = 10;
    //if(sensorValues[0]<500){
     //Wire.write(data);
@@ -216,5 +249,5 @@ sensorValues[2] + " "  + sensorValues[3]);
     //Wire.write("Hello World");
     //Wire.print(true);
    //}
-   
+#endif   
 }

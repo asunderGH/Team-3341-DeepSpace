@@ -34,5 +34,6 @@ class OI {
   public:
   Joystick* getLeft();
   Joystick* getRight();
+  Joystick* getBucket();
   OI();
 };

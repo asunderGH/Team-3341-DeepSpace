@@ -8,20 +8,22 @@
 #include "Subsystems/HatchServo.h"
 #include "RobotMap.h"
 #include <iostream>
+#include "Commands/Servo_Retract.h"
 
 HatchServo::HatchServo() : Subsystem("ExampleSubsystem"), servo(new Servo(SERVO_PORT)){}
 
 void HatchServo::InitDefaultCommand() {
   // Set the default command for a subsystem here.
   // SetDefaultCommand(new MySpecialCommand());
+  SetDefaultCommand(new Servo_Retract());
 }
 
 void HatchServo::extend(){
-  servo->Set(0.5);
+  servo->Set(0);
 }
 
 void HatchServo::retract(){
-  servo->Set(0.0);
+  servo->Set(3);
 }
 // Put methods for controlling this subsystem
 // here. Call these from Commands.

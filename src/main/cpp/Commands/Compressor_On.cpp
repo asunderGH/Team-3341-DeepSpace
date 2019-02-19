@@ -7,6 +7,8 @@
 
 #include "Commands/Compressor_On.h"
 #include "Robot.h"
+#include "RobotMap.h"
+#include <iostream>
 
 Compressor_On::Compressor_On() {
   // Use Requires() here to declare subsystem dependencies
@@ -17,6 +19,9 @@ Compressor_On::Compressor_On() {
 // Called just before this Command runs the first time
 void Compressor_On::Initialize() {
   Robot::m_compressor->compressorOn();
+  if(printStuff){
+    std::cout << "Compressor On --------------------------" << std::endl;
+  }
 }
 
 // Called repeatedly when this Command is scheduled to run

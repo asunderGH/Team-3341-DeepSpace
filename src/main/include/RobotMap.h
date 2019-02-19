@@ -11,10 +11,10 @@
 constexpr int leftMotorPort = 2;
 constexpr int rightMotorPort = 3;
 
-constexpr int SERVO_PORT = 0;
-constexpr int COMPRESSOR_PORT = 0;
+constexpr int SERVO_PORT = 8;
+constexpr int COMPRESSOR_PORT = 5;
 
-constexpr int PISTON_FORWARD_CHANNEL = 0;
+constexpr int PISTON_FORWARD_CHANNEL = 0; 
 constexpr int PISTON_REVERSE_CHANNEL = 1;
 
 constexpr int cargoJoystickPort = 2;
@@ -24,6 +24,8 @@ const static bool printOutputsColorSensors = true;
 const static bool printOutputNetworkTables = true;
 
 const static int thresholdVal = 500;
+
+static bool printStuff = true;
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
  * to a variable name. This provides flexibility changing wiring, makes checking

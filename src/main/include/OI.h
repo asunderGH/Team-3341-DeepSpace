@@ -14,6 +14,7 @@ class OI {
     Joystick* leftJoy;
     Joystick* rightJoy;
     Button* pistonExtendButton;
+    Button* pistonRetractButton;
     Button* servoExtendButton;
     Button* hatchRetractButton;
     Button* pistonOffButton;

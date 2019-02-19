@@ -29,19 +29,19 @@ void LineFollow::Execute() {
   int delta = 0.07; // change in power
 
   if(sen1 < 500){ // if the left most sensor is acive, turn left really fast
-    Robot::drive->tankDrive(basePower - delta, basePower + delta);
+    Robot::m_drive->tankDrive(basePower - delta, basePower + delta);
   }
   else if(sen4 < 500){ // if the right most sensor is acive, turn right really fast
-    Robot::drive->tankDrive(basePower + delta, basePower - delta);
+    Robot::m_drive->tankDrive(basePower + delta, basePower - delta);
   }
   else if(sen2 < 500 && sen3 > 500){ // otherwise if only the second left sensor is active, turn left slower
-    Robot::drive->tankDrive(basePower - delta/2, basePower + delta/2);
+    Robot::m_drive->tankDrive(basePower - delta/2, basePower + delta/2);
   }
-  else if(sen3 < 500 && sen2 > 500d){ // otherwise if only the second right sensor is active, turn right slower
-    Robot::drive->tankDrive(basePower + delta/2, basePower - delta/2);
+  else if(sen3 < 500 && sen2 > 500){ // otherwise if only the second right sensor is active, turn right slower
+    Robot::m_drive->tankDrive(basePower + delta/2, basePower - delta/2);
   }
   else if(sen2 < 500 && sen3 < 500) { // if both middle sensors are active, drive straight
-    Robot::drive->tankDrive(basePower, basePower);
+    Robot::m_drive->tankDrive(basePower, basePower);
   }
 }
 // Make this return true when this Command no longer needs to run execute()

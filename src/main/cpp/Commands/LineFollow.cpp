@@ -6,7 +6,7 @@
 /*----------------------------------------------------------------------------*/
 
 #include "LineFollow.h"
-
+#include "Robot.h"
 LineFollow::LineFollow() {
   // Use Requires() here to declare subsystem dependencies
   // eg. Requires(Robot::chassis.get());
@@ -18,16 +18,38 @@ LineFollow::LineFollow() {
 void LineFollow::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
-void LineFollow::Execute() {}
-int basePower = 0.1;
-int kP = 0.0001;
-int pos = Robot::colorSensors->getReadings()[4];
-int error = pos - 1250;
+void LineFollow::Execute() {
+  int basePower = 0.1;
+  int sen1 = Robot::colorSensors->getReadings()[0]; // left most
+  int sen2 = Robot::colorSensors->getReadings()[1];
+  int sen3 = Robot::colorSensors->getReadings()[2];
+  int sen4 = Robot::colorSensors->getReadings()[3]; // right most
+
+  int delta = 0.07; // change in power
+
+  if(sen1 < 500){ // if the left most sensor is acive, turn left really fast
+    Robot::drive->tankDrive(basePower - delta, basePower + delta);
+  }
+  else if(sen4 < 500){ // if the right most sensor is acive, turn right really fast
+    Robot::drive->tankDrive(basePower + delta, basePower - delta);
+  }
+  else if(sen2 < 500 && sen3 > 500){ // otherwise if only the second left sensor is active, turn left slower
+    Robot::drive->tankDrive(basePower - delta/2, basePower + delta/2);
+  }
+  else if(sen3 < 500 && sen2 > 500d){ // otherwise if only the second right sensor is active, turn right slower
+    Robot::drive->tankDrive(basePower + delta/2, basePower - delta/2);
+  }
+  else if(sen2 < 500 && sen3 < 500) { // if both middle sensors are active, drive straight
+    Robot::drive->tankDrive(basePower, basePower);
+  }
+}
 
 Robot::drive->tankDrive(basePower - error*kP, basePower + error*kP);
 
 // Make this return true when this Command no longer needs to run execute()
-bool LineFollow::IsFinished() { return false; }
+bool LineFollow::IsFinished() { 
+  return(Robot::cv->getDistance() == 24);
+}
 
 // Called once after isFinished returns true
 void LineFollow::End() {}

@@ -16,9 +16,16 @@ PressureControl* Robot::m_compressor;
 AHRS* Robot::navx;
 Arduino* Robot::colorSensors;
 NetworkTables* Robot::cv;
+CargoDoor* Robot::cargo;
 OI* Robot::m_oi;
 
 void Robot::RobotInit() {
+  cs::UsbCamera camera1 = CameraServer::GetInstance()->StartAutomaticCapture();
+  camera1.SetResolution(240, 180);
+  camera1.SetFPS(60);
+  camera1.SetBrightness(50);
+
+
   // m_chooser.AddDefault("Default Auto", &m_defaultAuto);
   // m_chooser.AddObject("My Auto", &m_myAuto);
   // frc::SmartDashboard::PutData("Auto Modes", &m_chooser);
@@ -29,13 +36,10 @@ void Robot::RobotInit() {
   navx = new AHRS(frc::I2C::Port::kMXP);
   colorSensors = new Arduino();  
   cv = new NetworkTables();
+  cargo = new CargoDoor();
   m_oi = new OI();
 
-  cs::UsbCamera camera1 = CameraServer::GetInstance()->StartAutomaticCapture();
-  camera1.SetResolution(240, 180);
-  camera1.SetFPS(60);
-  camera1.SetBrightness(50);
-
+  
   navx->Reset();
   navx->ResetDisplacement();
   navx->ZeroYaw();
@@ -52,8 +56,9 @@ void Robot::RobotInit() {
  */
 void Robot::RobotPeriodic() {
   
+
   //std::cout << colorSensors->readSensors() << std::endl;
-  colorSensors->readSensors();
+  //colorSensors->readSensors();
 }
 
 /**

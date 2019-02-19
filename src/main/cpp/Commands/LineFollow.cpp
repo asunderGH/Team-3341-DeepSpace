@@ -5,12 +5,13 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "LineFollow.h"
+#include "Commands/LineFollow.h"
 #include "Robot.h"
+
 LineFollow::LineFollow() {
   // Use Requires() here to declare subsystem dependencies
   // eg. Requires(Robot::chassis.get());
-  Requires(Robot::drive);
+  Requires(Robot::m_drive);
   Requires(Robot::colorSensors);
 }
 
@@ -43,9 +44,6 @@ void LineFollow::Execute() {
     Robot::drive->tankDrive(basePower, basePower);
   }
 }
-
-Robot::drive->tankDrive(basePower - error*kP, basePower + error*kP);
-
 // Make this return true when this Command no longer needs to run execute()
 bool LineFollow::IsFinished() { 
   return(Robot::cv->getDistance() == 24);

@@ -7,23 +7,14 @@
 
 #pragma once
 
-#include <frc/commands/Subsystem.h>
-#include <frc/WPILib.h>
-#include <iostream>
-#include <stdio.h>
+#include <frc/commands/Command.h>
 
-class Arduino : public frc::Subsystem {
- private:
- frc::I2C* arduino;
- uint8_t* recieve;
-  // It's desirable that everything possible under private except
-  // for methods that implement subsystem capabilities
-
+class ResetEncoder : public frc::Command {
  public:
-  Arduino();
-  std::string readUint(int num, uint8_t* uint);
-  int* getReadings();
-  void readSensors();
-  void InitDefaultCommand() override;
-  
+  ResetEncoder();
+  void Initialize() override;
+  void Execute() override;
+  bool IsFinished() override;
+  void End() override;
+  void Interrupted() override;
 };

@@ -36,11 +36,19 @@ pistonExtendButton(new JoystickButton(cargoStick, 1)),
 pistonRetractButton(new JoystickButton(cargoStick, 2)),
 
 lDriveTurn(new JoystickButton(leftJoy, 1)),
+<<<<<<< HEAD
 rDriveTurn(new JoystickButton(rightJoy, 1))
 //holdCargo(new JoystickButton(cargoStick, 9)),
 //resetCargo(new JoystickButton(cargoStick, 10)), resetEncoder(new JoystickButton(cargoStick, 1)), 
 //releaseCargoRocket(new JoystickButton(cargoStick, 7)),
 //releaseCargoShuttle(new JoystickButton(cargoStick, 8))
+=======
+rDriveTurn(new JoystickButton(rightJoy, 1)),
+holdCargo(new JoystickButton(cargoStick, 5)),
+resetCargo(new JoystickButton(cargoStick, 3)),
+releaseCargoRocket(new JoystickButton(cargoStick, 4)),
+releaseCargoShuttle(new JoystickButton(cargoStick, 6))
+>>>>>>> bc76d93678dcc02274c8cf6c171e7d54028518a2
 {
   // Process operator interface input here.
   //hatchExtendButton->WhenPressed(new Hatch_Extend());
@@ -59,8 +67,9 @@ rDriveTurn(new JoystickButton(rightJoy, 1))
   lDriveTurn->WhileActive(new DriverTurn(0.3));
   rDriveTurn->WhileActive(new DriverTurn(-0.3));
 
-  holdCargo->ToggleWhenPressed(new MoveCargoDoor(15));
-  resetCargo->ToggleWhenPressed(new MoveCargoDoor(0));
+  holdCargo->ToggleWhenPressed(new
+   MoveCargoDoor(0));
+  resetCargo->ToggleWhenPressed(new MoveCargoDoor(-15));
 
   releaseCargoRocket->ToggleWhenPressed(new MoveCargoDoor(30));
   releaseCargoShuttle->ToggleWhenPressed(new MoveCargoDoor(45));
@@ -74,4 +83,8 @@ Joystick* OI::getLeft(){
 
 Joystick* OI::getRight(){
   return rightJoy;
+}
+
+Joystick* OI::getBucket(){
+  return cargoStick;
 }

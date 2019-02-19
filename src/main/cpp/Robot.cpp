@@ -58,7 +58,7 @@ void Robot::RobotPeriodic() {
   
 
   //std::cout << colorSensors->readSensors() << std::endl;
-  //colorSensors->readSensors();
+  
 }
 
 /**
@@ -114,7 +114,10 @@ void Robot::TeleopInit() {
   }
 }
 
-void Robot::TeleopPeriodic() { frc::Scheduler::GetInstance()->Run(); }
+void Robot::TeleopPeriodic() {
+  frc::Scheduler::GetInstance()->Run(); 
+  colorSensors->readSensors();   
+}
 
 void Robot::TestPeriodic() {}
 

@@ -8,6 +8,7 @@
 #include "Subsystems/CargoDoor.h"
 #include "frc/WPILib.h"
 #include "iostream"
+#include "Commands/MoveBucket.h"
 
 CargoDoor::CargoDoor() : Subsystem("CargoDoor"), cargoDoorMotor(new TalonSRX(cargoMotorPort))
 {
@@ -21,6 +22,7 @@ cargoDoorMotor->SetInverted(false);
 
 void CargoDoor::InitDefaultCommand()
 {
+	SetDefaultCommand(new MoveBucket());
 	// Set the default command for a subsystem here.
 	// SetDefaultCommand(new MySpecialCommand());
 }

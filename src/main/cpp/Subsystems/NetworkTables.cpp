@@ -8,7 +8,17 @@
 #include "Subsystems/NetworkTables.h"
 #include <iostream>
 
-NetworkTables::NetworkTables() : Subsystem("ExampleSubsystem") {}
+NetworkTables::NetworkTables() : Subsystem("ExampleSubsystem") {
+  auto inst = nt::NetworkTableInstance::GetDefault();
+  auto table = inst.GetTable("cv");
+  
+  inst.StartClient("10.33.41.2");
+  inst.StartDSClient();
+  //std::cout << "Reading net tables \n";
+  
+  rectAzimuth = table->GetEntry("rectAzi");
+  rectDistance = table->GetEntry("rectDistance");
+}
 
 void NetworkTables::InitDefaultCommand() {
   
@@ -17,14 +27,7 @@ void NetworkTables::InitDefaultCommand() {
 }
 
 double NetworkTables::getAzimuth(){
-  auto inst = nt::NetworkTableInstance::GetDefault();
-  auto table = inst.GetTable("cv");
   
-  inst.StartClient("10.33.41.2");
-  inst.StartDSClient();
-  //std::cout << "Reading net tables \n";
-  
-  nt::NetworkTableEntry rectAzimuth = table->GetEntry("rectAzi");
   double azimuth = rectAzimuth.GetDouble(-100);
  
  if (printOutputNetworkTables){
@@ -35,6 +38,7 @@ double NetworkTables::getAzimuth(){
 }
 
 double NetworkTables::getDistance(){
+  /*
   auto inst = nt::NetworkTableInstance::GetDefault();
   auto table = inst.GetTable("cv");
   
@@ -43,6 +47,7 @@ double NetworkTables::getDistance(){
   //std::cout << "Reading net tables \n";
   
   nt::NetworkTableEntry rectDistance = table->GetEntry("rectDistance");
+  */
   double distance = rectDistance.GetDouble(-100);
  
  if (printOutputNetworkTables){

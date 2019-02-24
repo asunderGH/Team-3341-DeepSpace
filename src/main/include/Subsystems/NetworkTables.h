@@ -17,9 +17,12 @@
 class NetworkTables : public frc::Subsystem {
  private:
  
+  //nt::NetworkTableInstance inst = nt::NetworkTableInstance::GetDefault();
+  //std::shared_ptr<nt::NetworkTable> table = inst.GetTable("cv");
   // It's desirable that everything possible under private except
   // for methods that implement subsystem capabilities
-
+  nt::NetworkTableEntry rectAzimuth; 
+  nt::NetworkTableEntry rectDistance;
  public:
   NetworkTables();
   void InitDefaultCommand() override;

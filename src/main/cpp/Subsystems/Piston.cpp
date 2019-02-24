@@ -3,7 +3,7 @@
 #include <iostream>
 #include "Commands/Piston_Retract.h"
 
-Piston::Piston() : Subsystem("Piston"), piston(new DoubleSolenoid(5, 0, 1)) {
+Piston::Piston() : Subsystem("Piston"), piston(new DoubleSolenoid(PCM_TALON_ID, PISTON_FORWARD_CHANNEL, PISTON_REVERSE_CHANNEL)) {
 }
 
 void Piston::InitDefaultCommand() {

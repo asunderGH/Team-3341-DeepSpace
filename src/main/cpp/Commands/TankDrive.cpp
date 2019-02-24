@@ -23,7 +23,7 @@ void TankDrive::Initialize() {}
 void TankDrive::Execute() {
   double leftVal = Robot::m_oi->getLeft()->GetY();
   double rightVal = Robot::m_oi->getRight()->GetY();
-  Robot::m_drive->tankDrive(-leftVal, -rightVal);
+  Robot::m_drive->tankDrive(leftVal, rightVal);
 }
 
 // Make this return true when this Command no longer needs to run execute()

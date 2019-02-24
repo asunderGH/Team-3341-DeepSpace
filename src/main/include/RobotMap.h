@@ -16,6 +16,7 @@ constexpr int COMPRESSOR_PORT = 5;
 
 constexpr int PISTON_FORWARD_CHANNEL = 0; 
 constexpr int PISTON_REVERSE_CHANNEL = 1;
+constexpr int PCM_TALON_ID = 0;
 
 constexpr int cargoJoystickPort = 2;
 constexpr int cargoMotorPort = 4;

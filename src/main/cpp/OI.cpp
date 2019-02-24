@@ -24,56 +24,45 @@
 #include "RobotMap.h"
 #include <frc/WPILib.h>
 
-OI::OI() : leftJoy(new Joystick(0)), rightJoy(new Joystick(1)),
-servoExtendButton(new JoystickButton(rightJoy, 3)),
-/*hatchRetractButton(new JoystickButton(rightJoy, 1)),*/ 
+OI::OI() : leftJoy(new Joystick(0)), rightJoy(new Joystick(1)), cargoStick(new Joystick(2)),
 pistonOffButton(new JoystickButton(rightJoy, 8)),
 compressorOnButton(new JoystickButton(rightJoy, 10)), 
 compressorOffButton(new JoystickButton(rightJoy, 9)),
-readSensorsButton(new JoystickButton(leftJoy, 5)),
-cargoStick(new Joystick(2)),
 pistonExtendButton(new JoystickButton(cargoStick, 1)), 
 pistonRetractButton(new JoystickButton(cargoStick, 2)),
-
+servoExtendButton(new JoystickButton(cargoStick, 5)),
+servoRetractButton(new JoystickButton(cargoStick, 3)),
 lDriveTurn(new JoystickButton(leftJoy, 1)),
-<<<<<<< HEAD
 rDriveTurn(new JoystickButton(rightJoy, 1))
 //holdCargo(new JoystickButton(cargoStick, 9)),
 //resetCargo(new JoystickButton(cargoStick, 10)), resetEncoder(new JoystickButton(cargoStick, 1)), 
 //releaseCargoRocket(new JoystickButton(cargoStick, 7)),
 //releaseCargoShuttle(new JoystickButton(cargoStick, 8))
-=======
-rDriveTurn(new JoystickButton(rightJoy, 1)),
-holdCargo(new JoystickButton(cargoStick, 5)),
-resetCargo(new JoystickButton(cargoStick, 3)),
-releaseCargoRocket(new JoystickButton(cargoStick, 4)),
-releaseCargoShuttle(new JoystickButton(cargoStick, 6))
->>>>>>> bc76d93678dcc02274c8cf6c171e7d54028518a2
 {
   // Process operator interface input here.
   //hatchExtendButton->WhenPressed(new Hatch_Extend());
-  pistonExtendButton->WhenPressed(new Hatch_Extend());
-  pistonRetractButton->WhenPressed(new Hatch_Retract());
+  pistonExtendButton->WhenPressed(new Piston_Extend());
+  pistonRetractButton->WhenPressed(new Piston_Retract());
   servoExtendButton->ToggleWhenPressed(new Servo_Extend());
-
+  servoRetractButton->ToggleWhenPressed(new Servo_Retract());
 	//hatchRetractButton->WhenPressed(new Hatch_Retract());
   pistonOffButton->WhenPressed(new Piston_Off());
 
   compressorOnButton->WhenPressed(new Compressor_On());
   compressorOffButton->WhenPressed(new Compressor_Off());
 
-  readSensorsButton->WhenPressed(new readColorSensors());
+  //readSensorsButton->WhenPressed(new readColorSensors());
   
   lDriveTurn->WhileActive(new DriverTurn(0.3));
   rDriveTurn->WhileActive(new DriverTurn(-0.3));
 
-  holdCargo->ToggleWhenPressed(new
+  /*holdCargo->ToggleWhenPressed(new
    MoveCargoDoor(0));
   resetCargo->ToggleWhenPressed(new MoveCargoDoor(-15));
 
   releaseCargoRocket->ToggleWhenPressed(new MoveCargoDoor(30));
   releaseCargoShuttle->ToggleWhenPressed(new MoveCargoDoor(45));
-
+*/
   //resetEncoder->WhenPressed(new ResetEncoder());
 }
 

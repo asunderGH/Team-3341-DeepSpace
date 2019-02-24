@@ -116,7 +116,7 @@ void Robot::TeleopInit() {
 
 void Robot::TeleopPeriodic() {
   frc::Scheduler::GetInstance()->Run(); 
-  colorSensors->readSensors();   
+  //colorSensors->readSensors();   
 }
 
 void Robot::TestPeriodic() {}

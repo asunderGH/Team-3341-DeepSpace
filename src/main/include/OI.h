@@ -13,25 +13,21 @@ class OI {
   private:
     Joystick* leftJoy;
     Joystick* rightJoy;
+    
+    Joystick*cargoStick;
     Button* pistonExtendButton;
     Button* pistonRetractButton;
-    Button* servoExtendButton;
-    Button* hatchRetractButton;
+    
     Button* pistonOffButton;
 
     Button* compressorOnButton;
     Button* compressorOffButton;
 
-    Button* readSensorsButton;
+    Button* servoExtendButton;
+    Button* servoRetractButton;
     Button* rDriveTurn;
     Button* lDriveTurn;
     
-    Joystick*cargoStick;
-    Button*releaseCargoShuttle;
-	  Button*releaseCargoRocket;
-	  Button*holdCargo;
-	  Button*resetCargo;
-    Button* resetEncoder;
   public:
   Joystick* getLeft();
   Joystick* getRight();

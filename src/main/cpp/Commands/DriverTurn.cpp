@@ -11,7 +11,7 @@
 
 DriverTurn::DriverTurn(double power){
   Requires(Robot::m_drive);
-  myPow = power;
+  myPow = -power;
 }
 
 // Called just before this Command runs the first time
@@ -21,7 +21,7 @@ void DriverTurn::Initialize() {}
 void DriverTurn::Execute() {
   
   Robot::m_drive->tankDrive(myPow, -myPow);
-}
+} 
 
 // Make this return true when this Command no longer needs to run execute()
 bool DriverTurn::IsFinished() { 

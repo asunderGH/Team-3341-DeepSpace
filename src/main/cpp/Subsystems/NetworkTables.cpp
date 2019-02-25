@@ -16,7 +16,7 @@ NetworkTables::NetworkTables() : Subsystem("ExampleSubsystem") {
   inst.StartDSClient();
   //std::cout << "Reading net tables \n";
   
-  rectAzimuth = table->GetEntry("rectAzi");
+   rectAzimuth = table->GetEntry("rectAzi");
   rectDistance = table->GetEntry("rectDistance");
 }
 

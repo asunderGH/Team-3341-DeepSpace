@@ -15,14 +15,14 @@
 class Arduino : public frc::Subsystem {
  private:
  frc::I2C* arduino;
- uint8_t* recieve;
+ //uint8_t* recieve;
   // It's desirable that everything possible under private except
   // for methods that implement subsystem capabilities
 
  public:
   Arduino();
   std::string readUint(int num, uint8_t* uint);
-  int* getReadings();
+  bool* getReadings();
   void readSensors();
   void InitDefaultCommand() override;
   

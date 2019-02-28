@@ -9,7 +9,8 @@
 #include "Robot.h"
 #include "RobotMap.h"
 
-DriveUntilLine::DriveUntilLine() {
+DriveUntilLine::DriveUntilLine()
+ {
   // Use Requires() here to declare subsystem dependencies
   // eg. Requires(Robot::chassis.get());
   Requires(Robot::m_drive);
@@ -17,23 +18,29 @@ DriveUntilLine::DriveUntilLine() {
 }
 
 // Called just before this Command runs the first time
-void DriveUntilLine::Initialize() {}
+void DriveUntilLine::Initialize() 
+{
+
+}
 
 // Called repeatedly when this Command is scheduled to run
-void DriveUntilLine::Execute() {
+void DriveUntilLine::Execute() 
+{
   Robot::m_drive->tankDrive(0.5, 0.5);
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool DriveUntilLine::IsFinished() { 
+bool DriveUntilLine::IsFinished() 
+{ 
   
-  int* readings = Robot::colorSensors->getReadings();
-  int sensor1 = readings[0];
-  int sensor2 = readings[1];
-  int sensor3 = readings[2];
-  int sensor4 = readings[3];
+  bool* readings = Robot::colorSensors->getReadings();
+  bool sensor1 = readings[0];
+  bool sensor2 = readings[1];
+  bool sensor3 = readings[2];
+  bool sensor4 = readings[3];
    
-  if (sensor1 > thresholdVal || sensor2 > thresholdVal || sensor3 > thresholdVal || sensor4 > thresholdVal){
+  if (!sensor1 || !sensor2 || !sensor3 || !sensor4)
+  {
     return true;    
   } 
   return false;

@@ -27,7 +27,7 @@ void Servo_Retract::Initialize() {
 void Servo_Retract::Execute() {}
 
 // Make this return true when this Command no longer needs to run execute()
-bool Servo_Retract::IsFinished() { return true; }
+bool Servo_Retract::IsFinished() { return false; }
 
 // Called once after isFinished returns true
 void Servo_Retract::End() {}

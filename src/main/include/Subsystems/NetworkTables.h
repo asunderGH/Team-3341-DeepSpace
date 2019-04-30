@@ -8,24 +8,24 @@
 #pragma once
 
 #include <frc/commands/Subsystem.h>
-#include <ctre/Phoenix.h>
 
-#include "frc/WPILib.h"
-using namespace frc;
+#include "networktables/NetworkTableEntry.h"
+#include "networktables/NetworkTable.h"
+#include "networktables/NetworkTableInstance.h"
+#include "RobotMap.h"
 
-
-class DriveTrain : public frc::Subsystem {
+class NetworkTables : public frc::Subsystem {
  private:
- phoenix::motorcontrol::can::WPI_TalonSRX* left;
- phoenix::motorcontrol::can::WPI_TalonSRX* right;
- phoenix::motorcontrol::can::WPI_TalonSRX* test;
- DifferentialDrive* drive;
-   // It's desirable that everything possible under private except
+ 
+  //nt::NetworkTableInstance inst = nt::NetworkTableInstance::GetDefault();
+  //std::shared_ptr<nt::NetworkTable> table = inst.GetTable("cv");
+  // It's desirable that everything possible under private except
   // for methods that implement subsystem capabilities
-
+  nt::NetworkTableEntry rectAzimuth; 
+  nt::NetworkTableEntry rectDistance;
  public:
-  DriveTrain();
-  void tankDrive(double leftPow, double rightPow);
-  //void moveArm(double armPower);
+  NetworkTables();
   void InitDefaultCommand() override;
+  double getAzimuth();
+  double getDistance();
 };

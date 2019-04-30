@@ -8,24 +8,22 @@
 #pragma once
 
 #include <frc/commands/Subsystem.h>
-#include <ctre/Phoenix.h>
+#include <frc/WPILib.h>
+#include <iostream>
+#include <stdio.h>
 
-#include "frc/WPILib.h"
-using namespace frc;
-
-
-class DriveTrain : public frc::Subsystem {
+class Arduino : public frc::Subsystem {
  private:
- phoenix::motorcontrol::can::WPI_TalonSRX* left;
- phoenix::motorcontrol::can::WPI_TalonSRX* right;
- phoenix::motorcontrol::can::WPI_TalonSRX* test;
- DifferentialDrive* drive;
-   // It's desirable that everything possible under private except
+ frc::I2C* arduino;
+ //uint8_t* recieve;
+  // It's desirable that everything possible under private except
   // for methods that implement subsystem capabilities
 
  public:
-  DriveTrain();
-  void tankDrive(double leftPow, double rightPow);
-  //void moveArm(double armPower);
+  Arduino();
+  std::string readUint(int num, uint8_t* uint);
+  bool* getReadings();
+  void readSensors();
   void InitDefaultCommand() override;
+  
 };

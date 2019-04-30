@@ -5,34 +5,28 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "Commands/Compressor_On.h"
+#include "Commands/ResetEncoder.h"
 #include "Robot.h"
-#include "RobotMap.h"
-#include <iostream>
-
-Compressor_On::Compressor_On() {
+ResetEncoder::ResetEncoder() {
   // Use Requires() here to declare subsystem dependencies
   // eg. Requires(Robot::chassis.get());
-  Requires(Robot::m_compressor);
+  Requires(Robot::cargo);
 }
 
 // Called just before this Command runs the first time
-void Compressor_On::Initialize() {
-  Robot::m_compressor->compressorOn();
-  if(printStuff){
-    std::cout << "Compressor On --------------------------" << std::endl;
-  }
-}
+void ResetEncoder::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
-void Compressor_On::Execute() {}
+void ResetEncoder::Execute() {
+  Robot::cargo->reset();
+}
 
 // Make this return true when this Command no longer needs to run execute()
-bool Compressor_On::IsFinished() { return true; }
+bool ResetEncoder::IsFinished() { return true; }
 
 // Called once after isFinished returns true
-void Compressor_On::End() {}
+void ResetEncoder::End() {}
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void Compressor_On::Interrupted() {}
+void ResetEncoder::Interrupted() {}

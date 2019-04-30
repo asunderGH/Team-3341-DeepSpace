@@ -5,34 +5,50 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "Commands/Compressor_On.h"
+#include "Commands/DriveUntilLine.h"
 #include "Robot.h"
 #include "RobotMap.h"
-#include <iostream>
 
-Compressor_On::Compressor_On() {
+DriveUntilLine::DriveUntilLine()
+ {
   // Use Requires() here to declare subsystem dependencies
   // eg. Requires(Robot::chassis.get());
-  Requires(Robot::m_compressor);
+  Requires(Robot::m_drive);
+  Requires(Robot::colorSensors);
 }
 
 // Called just before this Command runs the first time
-void Compressor_On::Initialize() {
-  Robot::m_compressor->compressorOn();
-  if(printStuff){
-    std::cout << "Compressor On --------------------------" << std::endl;
-  }
+void DriveUntilLine::Initialize() 
+{
+
 }
 
 // Called repeatedly when this Command is scheduled to run
-void Compressor_On::Execute() {}
+void DriveUntilLine::Execute() 
+{
+  Robot::m_drive->tankDrive(0.5, 0.5);
+}
 
 // Make this return true when this Command no longer needs to run execute()
-bool Compressor_On::IsFinished() { return true; }
+bool DriveUntilLine::IsFinished() 
+{ 
+  
+  bool* readings = Robot::colorSensors->getReadings();
+  bool sensor1 = readings[0];
+  bool sensor2 = readings[1];
+  bool sensor3 = readings[2];
+  bool sensor4 = readings[3];
+   
+  if (!sensor1 || !sensor2 || !sensor3 || !sensor4)
+  {
+    return true;    
+  } 
+  return false;
+}
 
 // Called once after isFinished returns true
-void Compressor_On::End() {}
+void DriveUntilLine::End() {}
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void Compressor_On::Interrupted() {}
+void DriveUntilLine::Interrupted() {}

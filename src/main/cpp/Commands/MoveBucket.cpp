@@ -5,34 +5,29 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "Commands/Compressor_On.h"
+#include "Commands/MoveBucket.h"
 #include "Robot.h"
-#include "RobotMap.h"
-#include <iostream>
 
-Compressor_On::Compressor_On() {
+MoveBucket::MoveBucket() {
+  Requires(Robot::cargo);
   // Use Requires() here to declare subsystem dependencies
   // eg. Requires(Robot::chassis.get());
-  Requires(Robot::m_compressor);
 }
 
 // Called just before this Command runs the first time
-void Compressor_On::Initialize() {
-  Robot::m_compressor->compressorOn();
-  if(printStuff){
-    std::cout << "Compressor On --------------------------" << std::endl;
-  }
-}
+void MoveBucket::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
-void Compressor_On::Execute() {}
+void MoveBucket::Execute() {
+  Robot::cargo->move(-Robot::m_oi->getBucket()->GetY() / 4);
+}
 
 // Make this return true when this Command no longer needs to run execute()
-bool Compressor_On::IsFinished() { return true; }
+bool MoveBucket::IsFinished() { return false; }
 
 // Called once after isFinished returns true
-void Compressor_On::End() {}
+void MoveBucket::End() {}
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void Compressor_On::Interrupted() {}
+void MoveBucket::Interrupted() {}

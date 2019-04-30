@@ -10,7 +10,7 @@ class Piston : public Subsystem {
 private:
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
-	frc::DoubleSolenoid piston {PISTON_FORWARD_CHANNEL,PISTON_REVERSE_CHANNEL};
+	DoubleSolenoid* piston;
 public:
 	Piston();
 	void InitDefaultCommand();

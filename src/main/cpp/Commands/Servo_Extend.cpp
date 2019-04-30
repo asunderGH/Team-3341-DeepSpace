@@ -26,7 +26,7 @@ void Servo_Extend::Initialize() {
 void Servo_Extend::Execute() {}
 
 // Make this return true when this Command no longer needs to run execute()
-bool Servo_Extend::IsFinished() { return true; }
+bool Servo_Extend::IsFinished() { return false; }
 
 // Called once after isFinished returns true
 void Servo_Extend::End() {}

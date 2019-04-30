@@ -6,31 +6,21 @@
 /*----------------------------------------------------------------------------*/
 
 #pragma once
-#include "frc/WPILib.h"
-using namespace frc;
 
-class OI {
+#include <frc/commands/Command.h>
+
+class TurnToAngle : public frc::Command {
+ public:
+  TurnToAngle(double angle);
+  void Initialize() override;
+  void Execute() override;
+  bool IsFinished() override;
+  void End() override;
+  void Interrupted() override;
+
   private:
-    Joystick* leftJoy;
-    Joystick* rightJoy;
+    double myAngle;
+    double turnConstant;
+    double error;
     
-    Joystick*cargoStick;
-    Button* pistonExtendButton;
-    Button* pistonRetractButton;
-    
-    Button* pistonOffButton;
-
-    Button* compressorOnButton;
-    Button* compressorOffButton;
-
-    Button* servoExtendButton;
-    Button* servoRetractButton;
-    Button* rDriveTurn;
-    Button* lDriveTurn;
-    
-  public:
-  Joystick* getLeft();
-  Joystick* getRight();
-  Joystick* getBucket();
-  OI();
 };
